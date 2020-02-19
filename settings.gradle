@@ -1,0 +1,2 @@
+include ':app', ':presentation-layer', ':domain-layer', ':data-layer'
+rootProject.name='mobility-finder'

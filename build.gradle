@@ -1,0 +1,59 @@
+buildscript {
+    ext {
+        gradle_version = '3.5.3'
+        kotlin_version = '1.3.61'
+        anko_version = '0.10.8'
+        compilesdk_version = 29
+        minsdk_version = 19
+        targetsdk_version = 29
+        androidxappcompat_version = '1.1.0'
+        androidxcore_version = '1.3.0-alpha01'
+        androidxconstraintlayout_version = '1.1.3'
+        androidxrecyclerview_version = '1.1.0'
+        androidxcardview_version = '1.0.0'
+        androidmaterial_version = '1.2.0-alpha04'
+        lifecycle_version = '1.1.1'
+        coroutines_version = '1.3.2'
+        googlematerial_version = '1.1.0-alpha08'
+        arrow_version = '0.10.1'
+        dagger_version = '2.25.4'
+        retrofit_version = '2.6.1'
+        okhttp_version = '4.2.1'
+        leakcanary_version = '1.6.3'
+        dokka_version = '0.9.17'
+        ribbonizer_version = '2.1.0'
+        multidex_version = '2.0.1'
+        junit_version = '4.12'
+        androidxtestrunner_version = '1.1.2-rc01'
+        androidxtestrules_version = '1.1.0'
+        espresso_version = '3.2.0'
+        mockitoandroid_version = '3.1.0'
+        nhaarmanmockito_version = '2.1.0'
+    }
+    repositories {
+        google()
+        jcenter()
+        maven {
+            url 'https://maven.fabric.io/public'
+        }
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$gradle_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_version"
+        classpath "com.github.gfx.ribbonizer:ribbonizer-plugin:$ribbonizer_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

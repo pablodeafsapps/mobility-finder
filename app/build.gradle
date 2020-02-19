@@ -1,0 +1,67 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'org.jetbrains.dokka'
+// add overlaid launcher icons feature
+apply plugin: 'com.github.gfx.ribbonizer'
+
+android {
+    compileSdkVersion compilesdk_version
+    defaultConfig {
+        applicationId "org.deafsapps.android.mobilityfinder"
+        minSdkVersion minsdk_version
+        targetSdkVersion targetsdk_version
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dokka {
+    outputFormat = 'html'
+    outputDirectory = "./docs/dokka"
+    skipEmptyPackages = true   // skip empty packages
+    skipDeprecated = false   // skip deprecated
+    noStdlibLink = false   // skip documentation related to kotlin-stdlib
+}
+
+ribbonizer {
+    builder { variant, iconFile ->
+        // change ribbon color by product flavors
+        def filter
+        if (variant.buildType.name == "debug") {
+            filter = greenRibbonFilter(variant, iconFile)
+        } else {   // release
+            return
+        }
+        return filter
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.anko:anko-design:$anko_version"
+    implementation "androidx.multidex:multidex:$multidex_version"
+    // other modules
+    implementation project(':presentation-layer')
+    implementation project(':domain-layer')
+    implementation project(':data-layer')
+    // 3rd party libraries
+    implementation "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_version"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakcanary_version"
+}
