@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">presentation-layer</string>
+    <string name="app_name">Mobility Finder</string>
+    <string name="default_content_description">content description</string>
+    <string name="title_activity_map">Map</string>
 </resources>
