@@ -6,8 +6,6 @@ import androidx.lifecycle.Observer
 import org.deafsapps.android.mobilityfinder.domainlayer.feature.splash.SplashDomainLayerBridge
 import org.deafsapps.android.mobilityfinder.presentationlayer.base.BaseMvvmView
 import org.deafsapps.android.mobilityfinder.presentationlayer.base.ScreenState
-import org.deafsapps.android.mobilityfinder.presentationlayer.di.DaggerPresentationlayerComponent
-import org.deafsapps.android.mobilityfinder.presentationlayer.di.DiProvider
 import org.deafsapps.android.mobilityfinder.presentationlayer.di.PresentationlayerComponentProvider
 import org.deafsapps.android.mobilityfinder.presentationlayer.feature.main.view.ui.MainActivity
 import org.deafsapps.android.mobilityfinder.presentationlayer.feature.splash.view.state.SplashState

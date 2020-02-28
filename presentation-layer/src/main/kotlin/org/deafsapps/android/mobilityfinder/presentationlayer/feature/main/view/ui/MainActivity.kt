@@ -16,8 +16,11 @@ import org.deafsapps.android.mobilityfinder.presentationlayer.R
 import org.deafsapps.android.mobilityfinder.presentationlayer.base.BaseMvvmView
 import org.deafsapps.android.mobilityfinder.presentationlayer.base.ScreenState
 import org.deafsapps.android.mobilityfinder.presentationlayer.di.PresentationlayerComponentProvider
+import org.deafsapps.android.mobilityfinder.presentationlayer.domain.FailureVo
 import org.deafsapps.android.mobilityfinder.presentationlayer.feature.main.view.state.MainState
 import org.deafsapps.android.mobilityfinder.presentationlayer.feature.main.viewmodel.MainActivityViewModel
+import org.jetbrains.anko.longToast
+import org.jetbrains.anko.support.v4.longToast
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback,
@@ -42,14 +45,15 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback,
 
     override fun processRenderState(renderState: MainState?) {
         when (renderState) {
+            is MainState.ShowError -> showError(failure = renderState.failure)
+//            is MainState.DisplayReferenceLocationData ->
 
         }
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
-        val a = viewModel.onViewCreated()
-        Toast.makeText(this, a.toString(), Toast.LENGTH_SHORT).show()
+        viewModel.onViewCreated()
     }
 
     private fun initModel() {
@@ -75,6 +79,12 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback,
 
     private fun hideLoading() {
         pbLoading?.visibility = View.GONE
+    }
+
+    private fun showError(failure: FailureVo?) {
+        if (failure?.getErrorMessage() != null) {
+            longToast(failure.getErrorMessage())
+        }
     }
 
 }

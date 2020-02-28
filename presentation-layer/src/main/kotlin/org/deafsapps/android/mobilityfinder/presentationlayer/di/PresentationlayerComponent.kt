@@ -1,15 +1,13 @@
 package org.deafsapps.android.mobilityfinder.presentationlayer.di
 
-import dagger.Component
 import dagger.Subcomponent
-import org.deafsapps.android.mobilityfinder.domainlayer.di.DomainlayerAbstractModule
 import org.deafsapps.android.mobilityfinder.presentationlayer.feature.main.view.ui.MainActivity
 import org.deafsapps.android.mobilityfinder.presentationlayer.feature.splash.view.ui.SplashActivity
 
-@Component(modules = [DomainlayerAbstractModule::class])
+@Subcomponent
 interface PresentationlayerComponent {
 
-    @Component.Factory
+    @Subcomponent.Factory
     interface Factory {
         fun create(): PresentationlayerComponent
     }

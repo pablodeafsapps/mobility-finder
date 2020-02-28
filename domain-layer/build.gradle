@@ -47,6 +47,7 @@ dependencies {
     api "io.arrow-kt:arrow-core:$arrow_version"
     api "io.arrow-kt:arrow-syntax:$arrow_version"
     kapt "io.arrow-kt:arrow-meta:$arrow_version"
+    api "com.squareup.retrofit2:retrofit:$retrofit_version"
     // testing dependencies - Unit Test
     testImplementation "junit:junit:$junit_version"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$nhaarmanmockito_version"

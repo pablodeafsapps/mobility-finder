@@ -12,6 +12,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "API_URL", "\"https://apidev.meep.me\""
     }
     buildTypes {
         release {
@@ -48,8 +50,8 @@ dependencies {
     implementation project(':domain-layer')
     // 3rd party libraries
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$coroutinesadapter_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
     // testing dependencies - Unit Test
     testImplementation "junit:junit:$junit_version"

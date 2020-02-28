@@ -6,6 +6,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import org.deafsapps.android.mobilityfinder.domainlayer.domain.FailureBo
+import org.deafsapps.android.mobilityfinder.domainlayer.domain.MobilityResourceBo
 
 interface DomainlayerContract {
 
@@ -35,7 +36,7 @@ interface DomainlayerContract {
         }
 
         interface MobilityResourcesRepository {
-//            suspend fun fetchMobilityResourceList(): Either<FailureBo, List<CompanyBo>>
+            suspend fun fetchMobilityResourceList(): Either<FailureBo, List<MobilityResourceBo>>
         }
 
     }
