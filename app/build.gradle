@@ -60,7 +60,6 @@ dependencies {
     implementation project(':domain-layer')
     implementation project(':data-layer')
     // 3rd party libraries
-    implementation "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_version"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakcanary_version"

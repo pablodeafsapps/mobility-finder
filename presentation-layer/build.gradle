@@ -12,6 +12,7 @@ android {
         targetSdkVersion targetsdk_version
         versionCode 1
         versionName "1.0"
+        vectorDrawables.useSupportLibrary true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -54,7 +55,7 @@ dependencies {
     // other modules
     implementation project(':domain-layer')
     // 3rd party libraries
-    implementation "com.google.dagger:dagger:$dagger_version"
+    api "com.google.android.gms:play-services-maps:$googlemaps_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     // testing dependencies - Instrumentation Test
     androidTestImplementation "org.mockito:mockito-android:$mockitoandroid_version"
