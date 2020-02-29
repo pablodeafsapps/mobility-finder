@@ -5,10 +5,12 @@ import arrow.core.Either
 import arrow.core.left
 import org.deafsapps.android.mobilityfinder.datalayer.DatalayerContract
 import org.deafsapps.android.mobilityfinder.datalayer.domain.FailureDto
+import org.deafsapps.android.mobilityfinder.datalayer.domain.boToDto
 import org.deafsapps.android.mobilityfinder.datalayer.domain.dtoToBoFailure
 import org.deafsapps.android.mobilityfinder.domainlayer.DomainlayerContract
 import org.deafsapps.android.mobilityfinder.domainlayer.domain.FailureBo
 import org.deafsapps.android.mobilityfinder.domainlayer.domain.MobilityResourceBo
+import org.deafsapps.android.mobilityfinder.domainlayer.domain.MobilityResourceRequestBo
 import java.net.SocketTimeoutException
 
 object DataRepository : DomainlayerContract.Datalayer.MobilityResourcesRepository {
@@ -23,12 +25,10 @@ object DataRepository : DomainlayerContract.Datalayer.MobilityResourcesRepositor
      * @throws SocketTimeoutException
      */
     @Throws(SocketTimeoutException::class)
-    override suspend fun fetchMobilityResourceList(): Either<FailureBo, List<MobilityResourceBo>> =
+    override suspend fun fetchMobilityResourceList(request: MobilityResourceRequestBo): Either<FailureBo, List<MobilityResourceBo>> =
         try {
             connectivityDataSource.checkNetworkConnectionAvailability().takeIf { it }?.let {
-                mobilityResourcesDataSource.fetchMobilityResourceListResponse(
-                    lowerLeftCorner = "38.711046,-9.160096", upperRightCorner = "38.739429,-9.137115"
-                )
+                mobilityResourcesDataSource.fetchMobilityResourceListResponse(request = request.boToDto())
             } ?: run {
                 FailureDto.NoConnection.dtoToBoFailure().left()
             }

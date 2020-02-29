@@ -21,12 +21,8 @@ class SplashActivity : AppCompatActivity(),
     override val viewModel: SplashActivityViewModel by lazy { vm }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-//        DaggerPresentationlayerComponent.factory().create().inject(this)
         (applicationContext as PresentationlayerComponentProvider)
             .providePresentationlayerComponent().inject(this)
-//        (applicationContext as DiProvider).getComponent(this)
-//        (applicationContext as PresentationlayerComponentProvider).providePresentationlayerComponent()
-//            .inject(this)
         super.onCreate(savedInstanceState)
         initModel()
     }

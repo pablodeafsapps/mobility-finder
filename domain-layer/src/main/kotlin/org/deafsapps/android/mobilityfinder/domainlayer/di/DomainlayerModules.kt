@@ -4,6 +4,7 @@ import dagger.Binds
 import dagger.Module
 import org.deafsapps.android.mobilityfinder.domainlayer.DomainlayerContract
 import org.deafsapps.android.mobilityfinder.domainlayer.domain.MobilityResourceBo
+import org.deafsapps.android.mobilityfinder.domainlayer.domain.MobilityResourceRequestBo
 import org.deafsapps.android.mobilityfinder.domainlayer.feature.main.MAIN_DOMAIN_BRIDGE_TAG
 import org.deafsapps.android.mobilityfinder.domainlayer.feature.main.MainDomainLayerBridge
 import org.deafsapps.android.mobilityfinder.domainlayer.feature.main.MainDomainLayerBridgeImpl
@@ -20,6 +21,6 @@ abstract class DomainlayerAbstractModule {
 
     @Binds
     @Named(FETCH_MOBILITY_RESOURCE_LIST_UC_TAG)
-    abstract fun provideFetchMobilityResourceListUc(uc: FetchMobilityResourceListUc): @JvmSuppressWildcards DomainlayerContract.Presentationlayer.UseCase<Any, List<@JvmSuppressWildcards MobilityResourceBo>>
+    abstract fun provideFetchMobilityResourceListUc(uc: FetchMobilityResourceListUc): @JvmSuppressWildcards DomainlayerContract.Presentationlayer.UseCase<MobilityResourceRequestBo, List<@JvmSuppressWildcards MobilityResourceBo>>
 
 }

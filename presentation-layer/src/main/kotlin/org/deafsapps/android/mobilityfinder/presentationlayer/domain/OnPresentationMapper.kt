@@ -14,8 +14,8 @@ fun MobilityResourceBo.boToVo() = MobilityResourceVo(
     scheduledArrival = scheduledArrival.toString(),
     locationType = locationType.toString(),
     companyZoneId = companyZoneId.toString(),
-    lat = lat.toString(),
-    lon = lon.toString()
+    lat = lat,
+    lon = lon
 )
 
 /**
@@ -28,6 +28,7 @@ fun MobilityResourceBo.boToVo() = MobilityResourceVo(
  */
 fun FailureBo.boToVoFailure(): FailureVo {
     return when (this) {
+        is FailureBo.InputParamsError -> FailureVo.Error(msg = msg)
         is FailureBo.RequestError -> FailureVo.Error(msg = "Request Error: $msg")
         is FailureBo.ServerError -> FailureVo.Error(msg = "Server Error: $msg")
         FailureBo.NoConnection -> FailureVo.NoConnection

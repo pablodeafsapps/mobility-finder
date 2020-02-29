@@ -1,0 +1,3 @@
+package org.deafsapps.android.mobilityfinder.domainlayer.feature.detail
+
+internal class DetailDomainLayerBridgeImpl : DetailDomainLayerBridge

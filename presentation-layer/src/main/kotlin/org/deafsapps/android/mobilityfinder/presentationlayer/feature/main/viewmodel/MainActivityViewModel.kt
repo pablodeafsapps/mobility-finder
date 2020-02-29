@@ -2,8 +2,10 @@ package org.deafsapps.android.mobilityfinder.presentationlayer.feature.main.view
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.android.gms.maps.model.Marker
 import org.deafsapps.android.mobilityfinder.domainlayer.domain.FailureBo
 import org.deafsapps.android.mobilityfinder.domainlayer.domain.MobilityResourceBo
+import org.deafsapps.android.mobilityfinder.domainlayer.domain.MobilityResourceRequestBo
 import org.deafsapps.android.mobilityfinder.domainlayer.feature.main.MAIN_DOMAIN_BRIDGE_TAG
 import org.deafsapps.android.mobilityfinder.domainlayer.feature.main.MainDomainLayerBridge
 import org.deafsapps.android.mobilityfinder.presentationlayer.base.BaseMvvmViewModel
@@ -31,8 +33,23 @@ open class MainActivityViewModel @Inject constructor(
     override fun getDomainLayerBridgeId(): String = MAIN_DOMAIN_BRIDGE_TAG
 
     fun onViewCreated() {
+        _mainState.value = ScreenState.Loading
+        fetchMobilityResourcesAndHandleResponse()
+    }
+
+    fun onRefreshSelected() {
+        _mainState.value = ScreenState.Loading
+        fetchMobilityResourcesAndHandleResponse()
+    }
+
+    fun onLocationSelected(marker: Marker) {
+        _mainState.value = ScreenState.Render(MainState.NavigateToDetail(data = marker))
+    }
+
+    private fun fetchMobilityResourcesAndHandleResponse() {
         bridge.fetchMobilityRerources(
             scope = this,
+            params = MobilityResourceRequestBo(),   // default values
             onResult = {
                 it.fold(::handleError, ::handleFetchMobilityResourcesSuccess)
             }
@@ -40,8 +57,15 @@ open class MainActivityViewModel @Inject constructor(
     }
 
     private fun handleFetchMobilityResourcesSuccess(data: List<MobilityResourceBo>) {
-        _mainState.value =
-            ScreenState.Render(MainState.DisplayReferenceLocationData(data.mobilityResourceBoToVo()))
+        if (data.isNotEmpty()) {
+            _mainState.value =
+                ScreenState.Render(MainState.DisplayMobilityResources(data.mobilityResourceBoToVo()))
+            _mainState.value =
+                ScreenState.Render(MainState.MoveCameraToFirstLocation(data.mobilityResourceBoToVo().first()))
+        } else {
+            _mainState.value =
+                ScreenState.Render(MainState.ShowError(FailureBo.NoData.boToVoFailure()))
+        }
     }
 
     private fun handleError(failureBo: FailureBo) {

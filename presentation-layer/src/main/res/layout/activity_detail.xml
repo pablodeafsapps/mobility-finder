@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_detail__cv__root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/sixteen"
+    app:cardCornerRadius="@dimen/sixteen"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/activity_detail__cl__root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:id="@+id/activity_detail__pb__loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/activity_detail__tv__lon"
+            style="@style/DefaultTextViewParagraph"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/eight"
+            android:text="@string/text_ph_longitude"
+            app:layout_constraintBottom_toBottomOf="@id/activity_detail__tv__lat"
+            app:layout_constraintStart_toEndOf="@id/activity_detail__tv__lat"
+            app:layout_constraintTop_toTopOf="@id/activity_detail__tv__lat"
+            tools:text="Longitude: 14.32424" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/activity_detail__tv__lat"
+            style="@style/DefaultTextViewParagraph"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/eight"
+            android:layout_marginTop="@dimen/eight"
+            android:layout_marginBottom="@dimen/four"
+            android:text="@string/text_ph_latitude"
+            app:layout_constraintBottom_toTopOf="@id/activity_detail__tv__scheduled_arrival"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/activity_detail__tv__id"
+            tools:text="Latitude: 34.45667" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/activity_detail__tv__name"
+            style="@style/DefaultTextViewHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/eight"
+            android:text="@string/text_ph_name"
+            app:layout_constraintBottom_toBottomOf="@id/activity_detail__tv__id"
+            app:layout_constraintStart_toEndOf="@id/activity_detail__tv__id"
+            app:layout_constraintTop_toTopOf="@id/activity_detail__tv__id"
+            tools:text="Name: Algarve" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/activity_detail__tv__id"
+            style="@style/DefaultTextViewHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/eight"
+            android:layout_marginTop="@dimen/eight"
+            android:text="@string/text_ph_id"
+            app:layout_constraintBottom_toTopOf="@id/activity_detail__tv__lat"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="ID: 401" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/activity_detail__tv__scheduled_arrival"
+            style="@style/DefaultTextViewParagraph"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/eight"
+            android:layout_marginTop="@dimen/four"
+            android:layout_marginEnd="@dimen/eight"
+            android:layout_marginBottom="@dimen/four"
+            android:text="@string/text_ph_scheduled_arrival"
+            app:layout_constraintBottom_toTopOf="@id/activity_detail__tv__company_zone_id"
+            app:layout_constraintEnd_toStartOf="@id/activity_detail__tv__location_type"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/activity_detail__tv__lat"
+            tools:text="Scheduled arrival: 0" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/activity_detail__tv__location_type"
+            style="@style/DefaultTextViewParagraph"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/eight"
+            android:text="@string/text_ph_location_type"
+            app:layout_constraintBottom_toBottomOf="@id/activity_detail__tv__scheduled_arrival"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/activity_detail__tv__scheduled_arrival"
+            app:layout_constraintTop_toTopOf="@id/activity_detail__tv__scheduled_arrival"
+            tools:text="Location type: 0" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/activity_detail__tv__company_zone_id"
+            style="@style/DefaultTextViewParagraph"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/eight"
+            android:layout_marginTop="@dimen/four"
+            android:layout_marginBottom="@dimen/eight"
+            android:text="@string/text_ph_company_zone_id"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/activity_detail__tv__scheduled_arrival"
+            tools:text="Company zone ID: 0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

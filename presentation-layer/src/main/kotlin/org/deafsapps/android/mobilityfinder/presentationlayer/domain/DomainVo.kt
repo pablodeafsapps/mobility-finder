@@ -1,16 +1,20 @@
 package org.deafsapps.android.mobilityfinder.presentationlayer.domain
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class MobilityResourceVo(
-    private val id: String,
-    private val name: String,
-    private val x: String,
-    private val y: String,
-    private val scheduledArrival: String,
-    private val locationType: String,
-    private val companyZoneId: String,
-    private val lat: String,
-    private val lon: String
-)
+    val id: String,
+    val name: String,
+    val x: String,
+    val y: String,
+    val scheduledArrival: String,
+    val locationType: String,
+    val companyZoneId: String,
+    val lat: Double,
+    val lon: Double
+) : Parcelable
 
 sealed class FailureVo(var msg: String? = "n/a") {
 
