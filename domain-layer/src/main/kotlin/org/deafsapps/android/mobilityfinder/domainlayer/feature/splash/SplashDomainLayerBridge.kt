@@ -4,8 +4,4 @@ import org.deafsapps.android.mobilityfinder.domainlayer.base.BaseDomainLayerBrid
 
 const val SPLASH_DOMAIN_BRIDGE_TAG = "splashDomainLayerBridge"
 
-interface SplashDomainLayerBridge : BaseDomainLayerBridge {
-
-    fun request()
-
-}
+interface SplashDomainLayerBridge : BaseDomainLayerBridge

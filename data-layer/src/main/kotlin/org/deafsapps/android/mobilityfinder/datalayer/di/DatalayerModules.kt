@@ -1,42 +1,54 @@
 package org.deafsapps.android.mobilityfinder.datalayer.di
 
-import android.content.Context
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.deafsapps.android.mobilityfinder.datalayer.BuildConfig
 import org.deafsapps.android.mobilityfinder.datalayer.DatalayerContract
+import org.deafsapps.android.mobilityfinder.datalayer.DatalayerContract.Companion.CONNECTIVITY_DATA_SOURCE_TAG
+import org.deafsapps.android.mobilityfinder.datalayer.DatalayerContract.Companion.MOBILITY_RESOURCES_DATA_SOURCE_TAG
 import org.deafsapps.android.mobilityfinder.datalayer.datasource.AndroidDataSource
 import org.deafsapps.android.mobilityfinder.datalayer.datasource.MobilityResourcesDataSource
 import org.deafsapps.android.mobilityfinder.datalayer.repository.DataRepository
 import org.deafsapps.android.mobilityfinder.domainlayer.DomainlayerContract
+import org.deafsapps.android.mobilityfinder.domainlayer.DomainlayerContract.Datalayer.Companion.MOBILITY_RESOURCES_REPOSITORY_TAG
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
-class DatalayerModule() {
+abstract class DatalayerAbstractModule {
+
+    @Binds
+    @Named(MOBILITY_RESOURCES_DATA_SOURCE_TAG)
+    abstract fun provideMobilityResourcesDataSource(ds: MobilityResourcesDataSource): DatalayerContract.MobilityResourcesDataSource
+
+    @Binds
+    @Named(CONNECTIVITY_DATA_SOURCE_TAG)
+    abstract fun provideConnectivityDataSource(ds: AndroidDataSource): DatalayerContract.ConnectivityDataSource
+
+}
+
+@Module
+class DatalayerModule {
 
     @Provides
+    @Named(MOBILITY_RESOURCES_REPOSITORY_TAG)
     fun provideMobilityResourceRepository(
+        @Named(CONNECTIVITY_DATA_SOURCE_TAG)
         connectivityDs: DatalayerContract.ConnectivityDataSource,
+        @Named(MOBILITY_RESOURCES_DATA_SOURCE_TAG)
         mobilityResourcesDs: DatalayerContract.MobilityResourcesDataSource
     ): DomainlayerContract.Datalayer.MobilityResourcesRepository =
         DataRepository.apply {
             connectivityDataSource = connectivityDs
             mobilityResourcesDataSource = mobilityResourcesDs
         }
-
-    @Provides
-    fun provideConnectivityDataSource(ctx: Context): DatalayerContract.ConnectivityDataSource =
-        AndroidDataSource(context = ctx)
-
-    @Provides
-    fun provideMobilityResourcesDataSource(rfitInstance: Retrofit): DatalayerContract.MobilityResourcesDataSource =
-        MobilityResourcesDataSource(retrofitInstance = rfitInstance)
 
     @Provides
     @Singleton
