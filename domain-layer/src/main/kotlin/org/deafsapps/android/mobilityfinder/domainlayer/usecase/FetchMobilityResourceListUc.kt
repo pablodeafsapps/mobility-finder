@@ -11,11 +11,11 @@ import org.deafsapps.android.mobilityfinder.domainlayer.utils.handleMultiCatch
 import javax.inject.Inject
 import javax.inject.Named
 
-const val FETCH_MOBILITY_RESOURCE_LIST_UC_TAG = "fetchMobilityResourceeListUc"
+const val FETCH_MOBILITY_RESOURCE_LIST_UC_TAG = "fetchMobilityResourceListUc"
 
 class FetchMobilityResourceListUc @Inject constructor(
     @Named(MOBILITY_RESOURCES_REPOSITORY_TAG)
-    private val dataRepository: DomainlayerContract.Datalayer.MobilityResourcesRepository
+    private val dataRepository: DomainlayerContract.Datalayer.DataRepository
 ) : DomainlayerContract.Presentationlayer.UseCase<MobilityResourceRequestBo, List<@JvmSuppressWildcards MobilityResourceBo>> {
 
     override suspend fun run(params: MobilityResourceRequestBo?): Either<FailureBo, List<MobilityResourceBo>> =

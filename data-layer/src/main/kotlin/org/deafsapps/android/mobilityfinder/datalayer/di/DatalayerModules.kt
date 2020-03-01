@@ -12,7 +12,7 @@ import org.deafsapps.android.mobilityfinder.datalayer.DatalayerContract.Companio
 import org.deafsapps.android.mobilityfinder.datalayer.DatalayerContract.Companion.MOBILITY_RESOURCES_DATA_SOURCE_TAG
 import org.deafsapps.android.mobilityfinder.datalayer.datasource.AndroidDataSource
 import org.deafsapps.android.mobilityfinder.datalayer.datasource.MobilityResourcesDataSource
-import org.deafsapps.android.mobilityfinder.datalayer.repository.DataRepository
+import org.deafsapps.android.mobilityfinder.datalayer.repository.MobilityResourcesRepository
 import org.deafsapps.android.mobilityfinder.domainlayer.DomainlayerContract
 import org.deafsapps.android.mobilityfinder.domainlayer.DomainlayerContract.Datalayer.Companion.MOBILITY_RESOURCES_REPOSITORY_TAG
 import retrofit2.Retrofit
@@ -26,7 +26,7 @@ abstract class DatalayerAbstractModule {
 
     @Binds
     @Named(MOBILITY_RESOURCES_DATA_SOURCE_TAG)
-    abstract fun provideMobilityResourcesDataSource(ds: MobilityResourcesDataSource): DatalayerContract.MobilityResourcesDataSource
+    abstract fun provideMobilityResourcesDataSource(ds: MobilityResourcesDataSource): DatalayerContract.MobilityDataSource
 
     @Binds
     @Named(CONNECTIVITY_DATA_SOURCE_TAG)
@@ -43,11 +43,11 @@ class DatalayerModule {
         @Named(CONNECTIVITY_DATA_SOURCE_TAG)
         connectivityDs: DatalayerContract.ConnectivityDataSource,
         @Named(MOBILITY_RESOURCES_DATA_SOURCE_TAG)
-        mobilityResourcesDs: DatalayerContract.MobilityResourcesDataSource
-    ): DomainlayerContract.Datalayer.MobilityResourcesRepository =
-        DataRepository.apply {
+        mobilityDs: DatalayerContract.MobilityDataSource
+    ): DomainlayerContract.Datalayer.DataRepository =
+        MobilityResourcesRepository.apply {
             connectivityDataSource = connectivityDs
-            mobilityResourcesDataSource = mobilityResourcesDs
+            mobilityDataSource = mobilityDs
         }
 
     @Provides

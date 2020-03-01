@@ -36,7 +36,7 @@ interface DomainlayerContract {
             const val MOBILITY_RESOURCES_REPOSITORY_TAG = "mobilityResourcesRepository"
         }
 
-        interface MobilityResourcesRepository {
+        interface DataRepository {
             suspend fun fetchMobilityResourceList(request: MobilityResourceRequestBo): Either<FailureBo, List<MobilityResourceBo>>
         }
 
