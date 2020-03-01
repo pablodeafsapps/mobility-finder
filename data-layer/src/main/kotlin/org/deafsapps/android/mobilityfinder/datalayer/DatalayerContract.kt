@@ -16,7 +16,7 @@ interface DatalayerContract {
         suspend fun checkNetworkConnectionAvailability(): Boolean
     }
 
-    interface MobilityResourcesDataSource {
+    interface MobilityDataSource {
         suspend fun fetchMobilityResourceListResponse(request: MobilityResourceRequestDto): Either<FailureBo, List<MobilityResourceBo>>
     }
 

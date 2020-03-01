@@ -12,7 +12,7 @@ import retrofit2.Retrofit
 import javax.inject.Inject
 
 class MobilityResourcesDataSource @Inject constructor(private val retrofitInstance: Retrofit) :
-    DatalayerContract.MobilityResourcesDataSource {
+    DatalayerContract.MobilityDataSource {
 
     override suspend fun fetchMobilityResourceListResponse(request: MobilityResourceRequestDto): Either<FailureBo, List<MobilityResourceBo>> =
         retrofitInstance.create(MobilityResourcesService::class.java).fetchMobilityResourceListAsync(

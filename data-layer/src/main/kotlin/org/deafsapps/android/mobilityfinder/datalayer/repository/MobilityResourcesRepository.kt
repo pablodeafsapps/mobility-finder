@@ -13,10 +13,10 @@ import org.deafsapps.android.mobilityfinder.domainlayer.domain.MobilityResourceB
 import org.deafsapps.android.mobilityfinder.domainlayer.domain.MobilityResourceRequestBo
 import java.net.SocketTimeoutException
 
-object DataRepository : DomainlayerContract.Datalayer.MobilityResourcesRepository {
+object MobilityResourcesRepository : DomainlayerContract.Datalayer.DataRepository {
 
     lateinit var connectivityDataSource: DatalayerContract.ConnectivityDataSource
-    lateinit var mobilityResourcesDataSource: DatalayerContract.MobilityResourcesDataSource
+    lateinit var mobilityDataSource: DatalayerContract.MobilityDataSource
 
     /**
      * This method fetches a list of [MobilityResourceBo] after checking the data connection
@@ -28,7 +28,7 @@ object DataRepository : DomainlayerContract.Datalayer.MobilityResourcesRepositor
     override suspend fun fetchMobilityResourceList(request: MobilityResourceRequestBo): Either<FailureBo, List<MobilityResourceBo>> =
         try {
             connectivityDataSource.checkNetworkConnectionAvailability().takeIf { it }?.let {
-                mobilityResourcesDataSource.fetchMobilityResourceListResponse(request = request.boToDto())
+                mobilityDataSource.fetchMobilityResourceListResponse(request = request.boToDto())
             } ?: run {
                 FailureDto.NoConnection.dtoToBoFailure().left()
             }
