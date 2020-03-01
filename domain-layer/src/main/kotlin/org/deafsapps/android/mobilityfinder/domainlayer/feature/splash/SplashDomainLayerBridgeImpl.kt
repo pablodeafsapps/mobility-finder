@@ -1,0 +1,3 @@
+package org.deafsapps.android.mobilityfinder.domainlayer.feature.splash
+
+internal class SplashDomainLayerBridgeImpl : SplashDomainLayerBridge

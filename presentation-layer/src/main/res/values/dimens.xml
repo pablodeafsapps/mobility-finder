@@ -10,4 +10,8 @@
     <dimen name="twenty_four">24dp</dimen>
     <dimen name="thirty_two">32dp</dimen>
     <dimen name="sixty_four">64dp</dimen>
+    <!-- base text dimens -->
+    <dimen name="text_sixteen">16sp</dimen>
+    <dimen name="text_fourteen">14sp</dimen>
+    <dimen name="img_reload_size">80dp</dimen>
 </resources>

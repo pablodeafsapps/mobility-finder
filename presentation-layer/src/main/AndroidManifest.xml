@@ -1,6 +1,9 @@
-<manifest package="org.deafsapps.android.mobilityfinder.presentationlayer"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="org.deafsapps.android.mobilityfinder.presentationlayer">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -8,14 +11,23 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".feature.main.view.ui.MainActivity">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".feature.splash.view.ui.SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".feature.main.view.ui.MainActivity" />
+        <activity
+            android:name=".feature.detail.view.ui.DetailActivity"
+            android:parentActivityName=".feature.main.view.ui.MainActivity" />
     </application>
 
 </manifest>

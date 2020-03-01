@@ -12,6 +12,7 @@ android {
         targetSdkVersion targetsdk_version
         versionCode 1
         versionName "1.0"
+        vectorDrawables.useSupportLibrary true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -22,7 +23,7 @@ android {
     }
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
-        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
     }
     lintOptions {
         abortOnError false
@@ -54,13 +55,10 @@ dependencies {
     // other modules
     implementation project(':domain-layer')
     // 3rd party libraries
-    implementation "com.google.dagger:dagger:$dagger_version"
+    api "com.google.android.gms:play-services-maps:$googlemaps_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
-    // testing dependencies - Instrumentation Test
-    androidTestImplementation "org.mockito:mockito-android:$mockitoandroid_version"
-    androidTestImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$nhaarmanmockito_version"
-    androidTestImplementation "androidx.test:runner:$androidxtestrunner_version"
-    androidTestImplementation "androidx.test:rules:$androidxtestrules_version"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
-    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
+    // testing dependencies - Unit Test
+    testImplementation "junit:junit:$junit_version"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$nhaarmanmockito_version"
+    testImplementation 'android.arch.core:core-testing:1.1.1'
 }

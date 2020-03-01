@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">presentation-layer</string>
+    <string name="app_name">Mobility Finder</string>
+    <string name="default_content_description">content description</string>
+    <!-- activity_main -->
+    <string name="title_activity_map">Map</string>
+    <!-- activity_detail -->
+    <string name="text_ph_longitude">Longitude: %1$s</string>
+    <string name="text_ph_latitude">Latitude: %1$s</string>
+    <string name="text_ph_name">Name: %1$s</string>
+    <string name="text_ph_id">ID: %1$s</string>
+    <string name="text_ph_scheduled_arrival">Scheduled arrival: %1$s</string>
+    <string name="text_ph_location_type">Location type: %1$s</string>
+    <string name="text_ph_company_zone_id">Company zone ID: %1$s</string>
 </resources>
